@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tamara Clothing – Website Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #fdfaf6;
+    --cream-100: #f9f3ea;
+    --cream-200: #f2e6d3;
+    --rosegold: #c4735c;
+    --rosegold-light: #e8b8a8;
+    --charcoal: #2a2420;
+    --charcoal-light: #5a4a42;
+    --sand: #e8d5bb;
+  }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--cream-100); }
+  ::-webkit-scrollbar-thumb { background: var(--rosegold-light); }
+
+  /* ── NAVBAR ── */
+  .announcement {
+    background: var(--charcoal); color: var(--cream-100);
+    text-align: center; padding: 8px 16px;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 300;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,250,246,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,213,187,0.4);
+    padding: 0 48px; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+  .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; letter-spacing: 0.1em; color: var(--charcoal); }
+  .logo-sub { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--rosegold); font-weight: 300; margin-top: 1px; }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; transition: color .3s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--rosegold); transition: width .3s; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a:hover { color: var(--rosegold); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--charcoal); color: var(--cream);
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 11px 22px; text-decoration: none; transition: background .3s;
+    font-family: 'Jost', sans-serif;
+  }
+  .nav-cta:hover { background: var(--rosegold); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    background: linear-gradient(135deg, #1a1410 0%, #2a2420 40%, #3d2820 100%);
+    display: flex; align-items: flex-end; padding-bottom: 100px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80');
+    background-size: cover; background-position: top center;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,20,16,0.85) 0%, rgba(26,20,16,0.2) 50%, transparent 100%);
+  }
+  .hero-overlay2 {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(26,20,16,0.5) 0%, transparent 60%);
+  }
+  .hero-content { position: relative; z-index: 10; padding: 0 80px; max-width: 700px; }
+  .hero-tag { font-size: 10px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--rosegold-light); font-weight: 300; margin-bottom: 24px; }
+  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: 96px; font-weight: 300; line-height: 0.95; color: #f9f3ea; margin-bottom: 28px; }
+  .hero-h1 em {
+    font-style: italic;
+    background: linear-gradient(90deg, #c4735c, #e8b8a8, #d4907a, #e8b8a8, #c4735c);
+    background-size: 200% auto;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+  .hero-body { font-size: 15px; color: #e8d5bb; line-height: 1.75; font-weight: 300; max-width: 420px; margin-bottom: 36px; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-dark { display:inline-flex; align-items:center; gap:8px; padding: 14px 30px; background: var(--charcoal); color: var(--cream); font-size:11px; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; transition:background .3s; }
+  .btn-dark:hover { background: var(--rosegold); }
+  .btn-ghost { display:inline-flex; align-items:center; gap:8px; padding: 13px 30px; background:transparent; color: #f9f3ea; font-size:11px; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; border: 1px solid rgba(249,243,234,0.5); transition:all .3s; }
+  .btn-ghost:hover { background: #f9f3ea; color: var(--charcoal); }
+  .hero-deco { position:absolute; top:33%; right:48px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .hero-deco-line { width:1px; height:72px; background:rgba(196,115,92,0.4); }
+  .hero-deco-text { font-size:9px; letter-spacing:.4em; text-transform:uppercase; color:var(--rosegold); writing-mode:vertical-rl; }
+  .scroll-ind { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; animation:bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-6px)} }
+  .scroll-line { width:1px; height:28px; background:rgba(196,115,92,0.5); }
+  .scroll-dot { width:6px; height:6px; border-radius:50%; background:var(--rosegold); }
+
+  /* ── MARQUEE ── */
+  .marquee-bar { background: var(--charcoal); padding: 14px 0; overflow:hidden; white-space:nowrap; }
+  .marquee-inner { display:inline-flex; gap:40px; animation: marquee 25s linear infinite; }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .m-item { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#e8d5bb; font-weight:300; }
+  .m-dot { color:var(--rosegold); }
+
+  /* ── ABOUT SECTION ── */
+  .about { padding: 100px 80px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .about-label { font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:var(--rosegold); margin-bottom:20px; }
+  .about-h2 { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:400; line-height:1.15; color:var(--charcoal); margin-bottom:20px; }
+  .divider { width:48px; height:1px; background:linear-gradient(90deg,transparent,var(--rosegold),transparent); margin-bottom:20px; }
+  .about-body { font-size:14px; line-height:1.9; color:var(--charcoal-light); font-weight:300; margin-bottom:24px; }
+  .location-pill { display:inline-flex; align-items:center; gap:8px; font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--charcoal-light); }
+  .pin { color:var(--rosegold); font-size:14px; }
+  .about-imgs { display:grid; grid-template-columns:1fr 1fr; gap:16px; height:460px; }
+  .img-wrap { overflow:hidden; position:relative; }
+  .img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+  .img-wrap:hover img { transform:scale(1.06); }
+  .img-wrap:first-child { margin-top:48px; }
+  .btn-outline { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border:1px solid var(--charcoal); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--charcoal); text-decoration:none; transition:all .3s; margin-top:20px; }
+  .btn-outline:hover { background:var(--charcoal); color:var(--cream); }
+
+  /* ── PRODUCTS SECTION ── */
+  .products-sec { padding: 80px; background: var(--cream-100); }
+  .sec-header { text-align:center; margin-bottom:56px; }
+  .sec-label { font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:var(--rosegold); margin-bottom:12px; }
+  .sec-h2 { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:400; color:var(--charcoal); margin-bottom:16px; }
+  .divider-center { width:48px; height:1px; background:linear-gradient(90deg,transparent,var(--rosegold),transparent); margin:0 auto; }
+  .product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+  .product-card { cursor:pointer; }
+  .product-img { aspect-ratio:3/4; background:var(--cream-200); overflow:hidden; position:relative; }
+  .product-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+  .product-card:hover .product-img img { transform:scale(1.08); }
+  .product-overlay { position:absolute; bottom:0; left:0; right:0; background:var(--charcoal); color:var(--cream); font-size:9px; letter-spacing:.25em; text-transform:uppercase; padding:14px; text-align:center; transform:translateY(100%); transition:transform .4s ease; display:flex; align-items:center; justify-content:center; gap:8px; }
+  .product-card:hover .product-overlay { transform:translateY(0); }
+  .product-badge { position:absolute; top:12px; left:12px; font-size:9px; letter-spacing:.15em; text-transform:uppercase; padding:4px 10px; font-family:'Jost',sans-serif; }
+  .badge-featured { background:var(--rosegold); color:white; }
+  .product-info { padding: 14px 4px 8px; }
+  .product-cat { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--rosegold); margin-bottom:4px; }
+  .product-name { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:500; color:var(--charcoal); margin-bottom:6px; }
+  .product-price { font-size:14px; color:var(--charcoal); font-weight:400; }
+  .cta-row { text-align:center; margin-top:52px; }
+
+  /* ── LOOKBOOK TEASER ── */
+  .lookbook-sec { padding: 80px; }
+  .look-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .look-item { position:relative; overflow:hidden; aspect-ratio:3/4; }
+  .look-item:nth-child(2) { margin-top:48px; }
+  .look-item img { width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+  .look-item:hover img { transform:scale(1.06); }
+  .look-item-overlay { position:absolute; inset:0; background:rgba(42,36,32,0); transition:background .5s; }
+  .look-item:hover .look-item-overlay { background:rgba(42,36,32,0.3); }
+  .look-caption { text-align:center; margin-top:48px; }
+  .look-caption h3 { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:400; color:var(--charcoal); margin-bottom:10px; }
+  .look-caption p { font-size:13px; color:var(--charcoal-light); font-weight:300; margin-bottom:20px; }
+
+  /* ── WA CTA ── */
+  .wa-cta { background:var(--charcoal); padding: 100px 80px; text-align:center; position:relative; overflow:hidden; }
+  .wa-cta::before { content:''; position:absolute; top:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle, rgba(196,115,92,0.08) 0%, transparent 70%); }
+  .wa-label { font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:var(--rosegold); margin-bottom:16px; }
+  .wa-h2 { font-family:'Cormorant Garamond',serif; font-size:56px; font-weight:300; color:#f9f3ea; margin-bottom:20px; line-height:1.1; }
+  .wa-h2 em {
+    font-style:italic;
+    background:linear-gradient(90deg,#c4735c,#e8b8a8,#d4907a,#e8b8a8,#c4735c);
+    background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    animation:shimmer 4s linear infinite;
+  }
+  .wa-body { font-size:15px; color:#e8d5bb; font-weight:300; max-width:480px; margin:0 auto 36px; line-height:1.8; }
+  .btn-wa { display:inline-flex; align-items:center; gap:10px; padding: 16px 40px; background:#25D366; color:white; font-size:11px; letter-spacing:.15em; text-transform:uppercase; text-decoration:none; transition:all .3s; font-family:'Jost',sans-serif; }
+  .btn-wa:hover { background:#128C7E; transform:translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer { background:var(--charcoal); color:#f9f3ea; }
+  .footer-main { padding: 80px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:56px; }
+  .footer-brand-name { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:600; letter-spacing:.1em; }
+  .footer-brand-sub { font-size:9px; letter-spacing:.4em; text-transform:uppercase; color:var(--rosegold); margin-top:2px; font-weight:300; }
+  .footer-tagline { font-size:13px; color:#e8d5bb; line-height:1.8; font-weight:300; margin-top:20px; }
+  .footer-socials { display:flex; gap:12px; margin-top:24px; }
+  .social-icon { width:36px; height:36px; border:1px solid rgba(196,115,92,0.35); display:flex; align-items:center; justify-content:center; color:var(--rosegold); transition:all .3s; text-decoration:none; font-size:13px; }
+  .social-icon:hover { border-color:var(--rosegold); background:rgba(196,115,92,0.1); }
+  .footer-col-title { font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--rosegold); margin-bottom:28px; }
+  .footer-links { list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .footer-links a { font-size:13px; color:#e8d5bb; text-decoration:none; font-weight:300; transition:color .3s; }
+  .footer-links a:hover { color:var(--rosegold); }
+  .footer-contact-item { display:flex; align-items:flex-start; gap:12px; margin-bottom:18px; }
+  .contact-icon { color:var(--rosegold); font-size:14px; flex-shrink:0; margin-top:1px; }
+  .contact-text { font-size:13px; color:#e8d5bb; font-weight:300; line-height:1.6; }
+  .footer-bottom { border-top:1px solid rgba(61,53,48,0.8); padding:20px 80px; display:flex; justify-content:space-between; align-items:center; }
+  .footer-copy { font-size:10px; color:#8a7a72; letter-spacing:.15em; text-transform:uppercase; font-weight:300; }
+
+  /* ── PAGE LABELS ── */
+  .page-label {
+    display: inline-block;
+    background: var(--charcoal);
+    color: var(--rosegold);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    margin-bottom: 32px;
+    font-family: 'Jost', sans-serif;
+  }
+  .section-divider { border:none; border-top:1px solid var(--sand); margin: 0; }
+
+  /* ── PAGE NAV TABS ── */
+  .page-tabs { display:flex; gap:0; border-bottom:2px solid var(--sand); padding: 0 80px; background: var(--cream-100); }
+  .tab { padding: 16px 24px; font-size:10px; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; color:var(--charcoal-light); transition:all .2s; }
+  .tab.active { border-bottom-color:var(--rosegold); color:var(--rosegold); font-weight:500; }
+  .tab:hover { color:var(--rosegold); }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement">Fedha, Outering Road · Nairobi · WhatsApp to Order</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo-wrap">
+    <span class="logo-main">TAMARA</span>
+    <span class="logo-sub">CLOTHING</span>
+  </div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Lookbook</a>
+    <a href="#">Find Us</a>
+  </div>
+  <a href="#" class="nav-cta">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Shop Now
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
+  <div class="hero-deco">
+    <div class="hero-deco-line"></div>
+    <span class="hero-deco-text">New Collection</span>
+    <div class="hero-deco-line"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-tag">Fedha · Nairobi · Kenya</p>
+    <h1 class="hero-h1">
+      Dress like<br>
+      <em>her.</em>
+    </h1>
+    <p class="hero-body">
+      Curated fashion pieces for the modern Kenyan woman.
+      From everyday elegance to statement looks — find yours at Tamara.
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn-dark">Shop the Collection →</a>
+      <a href="#" class="btn-ghost">Chat With Us</a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span class="m-item">New Arrivals</span><span class="m-dot">✦</span>
+    <span class="m-item">Dresses</span><span class="m-dot">✦</span>
+    <span class="m-item">Co-ords</span><span class="m-dot">✦</span>
+    <span class="m-item">Nairobi Fashion</span><span class="m-dot">✦</span>
+    <span class="m-item">Fedha Boutique</span><span class="m-dot">✦</span>
+    <span class="m-item">Tamara Clothing</span><span class="m-dot">✦</span>
+    <span class="m-item">New Arrivals</span><span class="m-dot">✦</span>
+    <span class="m-item">Dresses</span><span class="m-dot">✦</span>
+    <span class="m-item">Co-ords</span><span class="m-dot">✦</span>
+    <span class="m-item">Nairobi Fashion</span><span class="m-dot">✦</span>
+    <span class="m-item">Fedha Boutique</span><span class="m-dot">✦</span>
+    <span class="m-item">Tamara Clothing</span><span class="m-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div>
+    <p class="about-label">Our Story</p>
+    <h2 class="about-h2">Fashion that feels<br><em>like you.</em></h2>
+    <div class="divider"></div>
+    <p class="about-body">
+      Tamara Clothing is a Nairobi boutique built for women who know exactly who they are.
+      Every piece is handpicked with the modern Kenyan woman in mind — bold, feminine,
+      and unapologetically stylish. Walk in, walk out feeling like yourself, only better.
+    </p>
+    <div class="location-pill">
+      <span class="pin">📍</span>
+      <span>Outering Road, Fedha, Nairobi</span>
+    </div>
+    <a href="#" class="btn-outline">Get Directions →</a>
+  </div>
+  <div class="about-imgs">
+    <div class="img-wrap">
+      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80" alt="Fashion" />
+    </div>
+    <div class="img-wrap">
+      <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80" alt="Style" />
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-sec">
+  <div class="sec-header">
+    <p class="sec-label">Handpicked for You</p>
+    <h2 class="sec-h2">Featured Pieces</h2>
+    <div class="divider-center"></div>
+  </div>
+  <div class="product-grid">
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&q=80" alt="Silk Wrap Dress" />
+        <div class="product-overlay">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </div>
+        <span class="product-badge badge-featured">Featured</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Dresses</p>
+        <h3 class="product-name">Silk Wrap Dress</h3>
+        <p class="product-price">KSh 4,500</p>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80" alt="Linen Co-ord" />
+        <div class="product-overlay">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </div>
+        <span class="product-badge badge-featured">Featured</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Sets</p>
+        <h3 class="product-name">Linen Co-ord Set</h3>
+        <p class="product-price">KSh 6,800</p>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&q=80" alt="Bodycon Midi" />
+        <div class="product-overlay">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Dresses</p>
+        <h3 class="product-name">Bodycon Midi</h3>
+        <p class="product-price">KSh 3,200</p>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80" alt="Blazer Dress" />
+        <div class="product-overlay">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Dresses</p>
+        <h3 class="product-name">Blazer Dress</h3>
+        <p class="product-price">KSh 5,500</p>
+      </div>
+    </div>
+  </div>
+  <div class="cta-row">
+    <a href="#" class="btn-dark">View All Products →</a>
+  </div>
+</section>
+
+<!-- LOOKBOOK TEASER -->
+<section class="lookbook-sec">
+  <div class="look-grid">
+    <div class="look-item"><img src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=500&q=80" alt="Look 1" /><div class="look-item-overlay"></div></div>
+    <div class="look-item"><img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=500&q=80" alt="Look 2" /><div class="look-item-overlay"></div></div>
+    <div class="look-item"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" alt="Look 3" /><div class="look-item-overlay"></div></div>
+  </div>
+  <div class="look-caption">
+    <h3>The Lookbook</h3>
+    <p>Style inspiration straight from the boutique</p>
+    <a href="#" class="btn-outline">Explore Looks →</a>
+  </div>
+</section>
+
+<!-- WHATSAPP CTA -->
+<section class="wa-cta">
+  <p class="wa-label">Easy Shopping</p>
+  <h2 class="wa-h2">See something<br><em>you love?</em></h2>
+  <p class="wa-body">Just send us a message on WhatsApp. Tell us what you want, your size, and we'll sort you out. Fast, easy, no stress.</p>
+  <a href="#" class="btn-wa">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chat on WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <div>
+        <div class="footer-brand-name">TAMARA</div>
+        <div class="footer-brand-sub">Clothing</div>
+      </div>
+      <p class="footer-tagline">Curated fashion for the modern<br>Kenyan woman. Style that speaks.<br>Pieces that last.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-icon">📸</a>
+        <a href="#" class="social-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#c4735c"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Quick Links</p>
+      <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop All</a></li>
+        <li><a href="#">Lookbook</a></li>
+        <li><a href="#">Find Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Visit Us</p>
+      <div class="footer-contact-item">
+        <span class="contact-icon">📍</span>
+        <span class="contact-text">Outering Road, Fedha<br>Nairobi, Kenya</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon" style="color:#c4735c">💬</span>
+        <span class="contact-text">WhatsApp Us</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">📸</span>
+        <span class="contact-text">@tamaraclothing</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Tamara Clothing. All rights reserved.</span>
+    <span class="footer-copy">Made with ♥ in Nairobi</span>
+  </div>
+</footer>
+
+</body>
+</html>
